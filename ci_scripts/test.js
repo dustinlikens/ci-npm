@@ -134,7 +134,7 @@ const getTodayDate = () => {
 // Main function to start the process
 const main = async () => {
     try {
-        const endpoint = `/analyticsReportRequests/${REPORT_ID}/reports?filter[category]=APP_USAGE`;
+        const endpoint = `/analyticsReportRequests/${REPORT_ID}/reports`;
         const data = await handleRequest(endpoint);
         for (const report of data.data) {
             await readReport(report.id);
