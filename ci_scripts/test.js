@@ -121,10 +121,18 @@ const processCSVFile = async (data) => {
             .filter(e => e.Date === '2024-08-22')  // Adjust this date as needed
             .reduce((acc, cur) => acc + Number(cur['Unique Devices']), 0);
         console.log(uniqueCrashes);
+        postToSlack(uniqueCrashes)
     } catch (error) {
         console.error('CSV Processing Error:', error.message);
     }
 };
+
+const postToSlack = uniqueCrashes => {
+    const payload = {
+        text: `Flagship iOS reported ${uniqueCrashes} unique crashes today.`
+    }
+    axios.post('https://hooks.slack.com/services/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')
+}
 
 // Generate today's date in ISO format (YYYY-MM-DD)
 const getTodayDate = () => {
