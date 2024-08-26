@@ -12,25 +12,6 @@ const ISSUER_ID = process.env.CONNECT_ISSUER_ID;
 const API_BASE_URL = 'https://api.appstoreconnect.apple.com/v1';
 const REPORT_ID = 'd5abd2d7-6c45-42a2-8683-e630d6e7eb50';
 
-// Create Axios client instance
-const apiClient = axios.create({
-    baseURL: API_BASE_URL,
-    headers: {
-        Authorization: `Bearer ${generateToken()}`,
-    }
-});
-
-// Handle API requests using Axios client instance
-const handleRequest = async (endpoint) => {
-    try {
-        const response = await apiClient.get(endpoint);
-        return response.data;
-    } catch (error) {
-        console.error('API Error:', error.response?.data || error.message);
-        throw error;
-    }
-};
-
 // Generate JWT Token
 const generateToken = () => {
     const payload = {
@@ -49,16 +30,22 @@ const generateToken = () => {
     return jwt.sign(payload, CONNECT_PRIVATE_KEY, signOptions);
 };
 
-// Main function to start the process
-const main = async () => {
+// Create Axios client instance
+const apiClient = axios.create({
+    baseURL: API_BASE_URL,
+    headers: {
+        Authorization: `Bearer ${generateToken()}`,
+    }
+});
+
+// Handle API requests using Axios client instance
+const handleRequest = async (endpoint) => {
     try {
-        const endpoint = `/analyticsReportRequests/${REPORT_ID}/reports?filter[category]=APP_USAGE`;
-        const data = await handleRequest(endpoint);
-        for (const report of data.data) {
-            await readReport(report.id);
-        }
+        const response = await apiClient.get(endpoint);
+        return response.data;
     } catch (error) {
-        console.error('Main Process Error:', error.message);
+        console.error('API Error:', error.response?.data || error.message);
+        throw error;
     }
 };
 
@@ -141,6 +128,19 @@ const processCSVFile = async (data) => {
         console.log(uniqueCrashes);
     } catch (error) {
         console.error('CSV Processing Error:', error.message);
+    }
+};
+
+// Main function to start the process
+const main = async () => {
+    try {
+        const endpoint = `/analyticsReportRequests/${REPORT_ID}/reports?filter[category]=APP_USAGE`;
+        const data = await handleRequest(endpoint);
+        for (const report of data.data) {
+            await readReport(report.id);
+        }
+    } catch (error) {
+        console.error('Main Process Error:', error.message);
     }
 };
 
