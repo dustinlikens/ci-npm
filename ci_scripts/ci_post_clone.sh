@@ -2,5 +2,5 @@
 
 brew install npm
 npm init -y
-npm i fs axios request jwt zlib csvtojson=
+npm i fs jsonwebtoken axios request zlib csvtojson
 node test.js
