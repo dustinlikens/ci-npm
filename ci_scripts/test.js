@@ -11,6 +11,7 @@ const CONNECT_PRIVATE_KEY = process.env.CONNECT_PRIVATE_KEY;
 const ISSUER_ID = process.env.CONNECT_ISSUER_ID;
 const API_BASE_URL = 'https://api.appstoreconnect.apple.com/v1';
 const REPORT_ID = 'd5abd2d7-6c45-42a2-8683-e630d6e7eb50';
+const SLACK_WEBHOOK = process.env.SLACK_WEBHOOK;
 
 // Generate JWT Token
 const generateToken = () => {
@@ -131,7 +132,7 @@ const postToSlack = uniqueCrashes => {
     const payload = {
         text: `Flagship iOS reported ${uniqueCrashes} unique crashes today.`
     }
-    axios.post('https://hooks.slack.com/services/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')
+    axios.post(SLACK_WEBHOOK, payload)
 }
 
 // Generate today's date in ISO format (YYYY-MM-DD)
