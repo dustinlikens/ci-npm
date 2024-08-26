@@ -14,6 +14,8 @@
 		EFAEE2B52C7C688B00EFE92F /* ci_npmTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAEE2B42C7C688B00EFE92F /* ci_npmTests.swift */; };
 		EFAEE2BF2C7C688B00EFE92F /* ci_npmUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAEE2BE2C7C688B00EFE92F /* ci_npmUITests.swift */; };
 		EFAEE2C12C7C688B00EFE92F /* ci_npmUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAEE2C02C7C688B00EFE92F /* ci_npmUITestsLaunchTests.swift */; };
+		EFAEE2CF2C7C699800EFE92F /* ci_post_clone.sh in Resources */ = {isa = PBXBuildFile; fileRef = EFAEE2CE2C7C699800EFE92F /* ci_post_clone.sh */; };
+		EFAEE2D12C7C6A7900EFE92F /* test.js in Resources */ = {isa = PBXBuildFile; fileRef = EFAEE2D02C7C6A7900EFE92F /* test.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +47,8 @@
 		EFAEE2BA2C7C688B00EFE92F /* ci-npmUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ci-npmUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFAEE2BE2C7C688B00EFE92F /* ci_npmUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ci_npmUITests.swift; sourceTree = "<group>"; };
 		EFAEE2C02C7C688B00EFE92F /* ci_npmUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ci_npmUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		EFAEE2CE2C7C699800EFE92F /* ci_post_clone.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_post_clone.sh; sourceTree = "<group>"; };
+		EFAEE2D02C7C6A7900EFE92F /* test.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = test.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +79,7 @@
 		EFAEE2962C7C688A00EFE92F = {
 			isa = PBXGroup;
 			children = (
+				EFAEE2CD2C7C698400EFE92F /* ci_scripts */,
 				EFAEE2A12C7C688A00EFE92F /* ci-npm */,
 				EFAEE2B32C7C688B00EFE92F /* ci-npmTests */,
 				EFAEE2BD2C7C688B00EFE92F /* ci-npmUITests */,
@@ -119,6 +124,15 @@
 				EFAEE2C02C7C688B00EFE92F /* ci_npmUITestsLaunchTests.swift */,
 			);
 			path = "ci-npmUITests";
+			sourceTree = "<group>";
+		};
+		EFAEE2CD2C7C698400EFE92F /* ci_scripts */ = {
+			isa = PBXGroup;
+			children = (
+				EFAEE2CE2C7C699800EFE92F /* ci_post_clone.sh */,
+				EFAEE2D02C7C6A7900EFE92F /* test.js */,
+			);
+			path = ci_scripts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -226,6 +240,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				EFAEE2A72C7C688B00EFE92F /* Assets.xcassets in Resources */,
+				EFAEE2CF2C7C699800EFE92F /* ci_post_clone.sh in Resources */,
+				EFAEE2D12C7C6A7900EFE92F /* test.js in Resources */,
 				EFAEE2AA2C7C688B00EFE92F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -424,6 +440,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "ci-npm/ci_npm.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -451,6 +468,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "ci-npm/ci_npm.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
