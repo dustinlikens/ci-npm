@@ -2,5 +2,5 @@
 
 brew install npm
 npm init -y
-npm i fs jsonwebtoken axios request zlib csvtojson
+for i in 'fs' 'jsonwebtoken' 'axios' 'request' 'zlib' 'csvtojson'; do npm install --save "$i"; done
 node test.js
