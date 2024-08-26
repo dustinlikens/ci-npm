@@ -1,34 +1,26 @@
 const fs   = require('fs');
 const jwt  = require('jsonwebtoken');
 const axios = require('axios');
-var request = require('request'),
-    zlib = require('zlib'),
-    
+const request = require('request');
+const zlib = require('zlib');
 const csvtojson = require('csvtojson');
-
-const apiKeyId = "HH6HB28U53"
-const issuerId = "69a6de78-79cd-47e3-e053-5b8c7c11a4d1"
-let expiration = Math.round((new Date()).getTime() / 1000 + 60);
-//let nowPlus20 = now + 1200  1200 === 20 minutes
 
 const token = () => {
     let payload = {
-        "iss": issuerId,
-        "exp": expiration,
+        "iss": process.env.CONNECT_ISSUER_ID,
+        "exp": Math.round((new Date()).getTime() / 1000 + 60),
         "aud": "appstoreconnect-v1"
     }
     let signOptions = {
         "algorithm": "ES256",
         header : {
             "alg": "ES256",
-            "kid": apiKeyId,
+            "kid": CONNECT_KEY_ID,
             "typ": "JWT"
         }
     };
     return jwt.sign(payload, process.env.CONNECT_PRIVATE_KEY, signOptions);
 }
-
-
 
 const config = {
     headers: {
