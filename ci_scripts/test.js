@@ -72,7 +72,7 @@ const readInstance = async (id) => {
     const endpoint = `/analyticsReportInstances/${id}`;
     const data = await handleRequest(endpoint);
     const todayDate = getTodayDate();  // Get today's date in ISO format
-    if (data.data.attributes.processingDate === todayDate) {
+//    if (data.data.attributes.processingDate === '2024-08-22') {
         await readSegments(data.data.relationships.segments.links.self);
     }
 };
