@@ -9,6 +9,4 @@ npm i request
 npm i zlib
 npm i out
 npm i csvtojson
-pwd
-ls
 CONNECT_PRIVATE_KEY=${CONNECT_PRIVATE_KEY} node test.js

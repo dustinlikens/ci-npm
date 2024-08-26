@@ -7,21 +7,20 @@ var request = require('request'),
     out = fs.createWriteStream('out');
 const csvtojson = require('csvtojson');
 
-// You get privateKey, apiKeyId and issuerId from your Apple App Store Connect account
-const privateKey = fs.readFileSync("./AuthKey_HH6HB28U53.p8") // this is the file you can only download once and should treat like a real, very precious key.
+
 const apiKeyId = "HH6HB28U53"
 const issuerId = "69a6de78-79cd-47e3-e053-5b8c7c11a4d1"
-let now = Math.round((new Date()).getTime() / 1000); // Notice the /1000
-let nowPlus20 = now + 1199 // 1200 === 20 minutes
+let expiration = Math.round((new Date()).getTime() / 1000 + 60);
+//let nowPlus20 = now + 1200  1200 === 20 minutes
 
 let payload = {
     "iss": issuerId,
-    "exp": nowPlus20,
+    "exp": expiration,
     "aud": "appstoreconnect-v1"
 }
 
 let signOptions = {
-    "algorithm": "ES256", // you must use this algorythm, not jsonwebtoken's default
+    "algorithm": "ES256",
     header : {
         "alg": "ES256",
         "kid": apiKeyId,
@@ -36,49 +35,6 @@ const config = {
         Authorization: `Bearer ${token}`
     }
 }
-
-// 1484133667 app id
-
-// const data = {"data": {
-//     "type": "analyticsReportRequests",
-//     "attributes": {
-//           "accessType": "ONGOING"
-//     },
-//     "relationships": {
-//       "app": {
-//         "data": {
-//           "type": "app",
-//           "id": "1484133667"
-//         }
-//       }
-//     }
-//   }
-// }
-
-const data = {
-  "data": {
-    "type": "analyticsReportRequests",
-    "attributes": {
-          "accessType": "ONGOING"
-    },
-    "relationships": {
-      "app": {
-        "data": {
-          "type": "apps",
-          "id": "1484133667"
-        }
-      }
-    }
-  }
-}
-
-// axios.post('https://api.appstoreconnect.apple.com/v1/analyticsReportRequests ', data, config)
-//     .then(res => {
-//         console.log(res.data.data)
-//     })
-//     .catch(err => {
-//         console.log(err.response.data)
-//     })
 
 const readInstances = url => {
     console.log(url)
@@ -192,16 +148,6 @@ const readReport = id => {
         })
 }
 
-const filterReports = () => {
-    axios.get(`https://api.appstoreconnect.apple.com/v1/analyticsReportRequests/1484133667/reports?filter[category]=APP_USAGE`, config)
-        .then(res => {
-            console.log(res.data.data)
-        })
-        .catch(err => {
-            console.log(err.response.data)
-        })
-}
-
 axios.get('https://api.appstoreconnect.apple.com/v1/analyticsReportRequests/d5abd2d7-6c45-42a2-8683-e630d6e7eb50/reports?filter[category]=APP_USAGE', config)
     .then(res => {
         // console.log(res.data.data)
@@ -213,26 +159,3 @@ axios.get('https://api.appstoreconnect.apple.com/v1/analyticsReportRequests/d5ab
         console.log(err.response.data)
     })
 
-// axios.get('https://api.appstoreconnect.apple.com/v1/apps/1484133667/analyticsReportRequests', config)
-//     .then(res => {
-//             console.log(res.data.data[0].relationships.reports)
-//         })
-//         .catch(err => {
-//             console.log(err.response.data)
-//         })
-
-
-
-// filterReports()
-
-
-// axios.get('https://api.appstoreconnect.apple.com/v1/analyticsReports/r39-d5abd2d7-6c45-42a2-8683-e630d6e7eb50', config)
-//     .then(res => {
-//         console.log(res.data)
-//     })
-//     .catch(err => {
-//         console.log(err.response.data)
-//     })
-
-
-// console.log(token)
