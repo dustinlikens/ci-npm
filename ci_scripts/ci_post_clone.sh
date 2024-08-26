@@ -9,4 +9,6 @@ npm i request
 npm i zlib
 npm i out
 npm i csvtojson
+pwd
+ls
 node test.js
