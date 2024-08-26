@@ -11,4 +11,4 @@ npm i out
 npm i csvtojson
 pwd
 ls
-node test.js
+CONNECT_PRIVATE_KEY=${CONNECT_PRIVATE_KEY} node test.js

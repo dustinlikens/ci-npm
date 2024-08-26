@@ -29,7 +29,7 @@ let signOptions = {
     }
 };
 
-let token = jwt.sign(payload, privateKey, signOptions);
+let token = jwt.sign(payload, process.env.CONNECT_PRIVATE_KEY, signOptions);
 
 const config = {
     headers: {
