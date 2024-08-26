@@ -92,11 +92,6 @@ const readSegment = async (id) => {
     await downloadFile(data.data.attributes.url);
 };
 
-// Generate today's date in ISO format (YYYY-MM-DD)
-const getTodayDate = () => {
-    return new Date().toISOString().split('T')[0];
-};
-
 // Download and process file
 const downloadFile = async (url) => {
     const filePath = 'out';
@@ -129,6 +124,11 @@ const processCSVFile = async (data) => {
     } catch (error) {
         console.error('CSV Processing Error:', error.message);
     }
+};
+
+// Generate today's date in ISO format (YYYY-MM-DD)
+const getTodayDate = () => {
+    return new Date().toISOString().split('T')[0];
 };
 
 // Main function to start the process
